@@ -52,6 +52,14 @@ public:
 		}
 	}
 	
+	void remove(const key_t& key) {
+		auto it = _cache_items_map.find(key);
+		if (it != _cache_items_map.end()) {
+			_cache_items_list.erase(it->second);
+			_cache_items_map.erase(it);
+		}
+	}
+
 	bool exists(const key_t& key) const {
 		return _cache_items_map.find(key) != _cache_items_map.end();
 	}
@@ -69,4 +77,3 @@ private:
 } // namespace cache
 
 #endif	/* _LRUCACHE_HPP_INCLUDED_ */
-
